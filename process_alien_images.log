@@ -1,0 +1,434 @@
+2024-11-14 12:23:48,687 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/5905.png' successfully resized to 24x24 pixels.
+2024-11-14 12:23:48,689 - INFO - Selected 4x4 section at position (13, 12) in image with border.
+2024-11-14 12:23:48,689 - INFO - Selected horizontal row at position (4, 20) in image with border.
+2024-11-14 12:23:48,690 - INFO - Resized selection to (600, 600).
+2024-11-14 12:23:48,690 - INFO - Resized selection to (600, 150).
+2024-11-14 12:23:48,690 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:23:48,690 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:23:48,691 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:23:48,729 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_5905.png'.
+
+2024-11-14 12:23:48,824 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/2890.png' successfully resized to 24x24 pixels.
+2024-11-14 12:23:48,824 - INFO - Selected 4x4 section at position (10, 2) in image with border.
+2024-11-14 12:23:48,824 - INFO - Selected horizontal row at position (3, 16) in image with border.
+2024-11-14 12:23:48,824 - INFO - Resized selection to (600, 600).
+2024-11-14 12:23:48,824 - INFO - Resized selection to (600, 150).
+2024-11-14 12:23:48,825 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:23:48,825 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:23:48,825 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:23:48,865 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_2890.png'.
+
+2024-11-14 12:23:48,921 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/7523.png' successfully resized to 24x24 pixels.
+2024-11-14 12:23:48,921 - INFO - Selected 4x4 section at position (1, 12) in image with border.
+2024-11-14 12:23:48,921 - INFO - Selected horizontal row at position (7, 16) in image with border.
+2024-11-14 12:23:48,921 - INFO - Resized selection to (600, 600).
+2024-11-14 12:23:48,921 - INFO - Resized selection to (600, 150).
+2024-11-14 12:23:48,922 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:23:48,922 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:23:48,922 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:23:48,962 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_7523.png'.
+
+2024-11-14 12:23:49,057 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/3443.png' successfully resized to 24x24 pixels.
+2024-11-14 12:23:49,058 - INFO - Selected 4x4 section at position (16, 18) in image with border.
+2024-11-14 12:23:49,058 - INFO - Selected horizontal row at position (8, 23) in image with border.
+2024-11-14 12:23:49,058 - INFO - Resized selection to (600, 600).
+2024-11-14 12:23:49,058 - INFO - Resized selection to (600, 150).
+2024-11-14 12:23:49,059 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:23:49,059 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:23:49,059 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:23:49,097 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_3443.png'.
+
+2024-11-14 12:23:49,386 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/6089.png' successfully resized to 24x24 pixels.
+2024-11-14 12:23:49,386 - INFO - Selected 4x4 section at position (9, 12) in image with border.
+2024-11-14 12:23:49,386 - INFO - Selected horizontal row at position (6, 17) in image with border.
+2024-11-14 12:23:49,387 - INFO - Resized selection to (600, 600).
+2024-11-14 12:23:49,387 - INFO - Resized selection to (600, 150).
+2024-11-14 12:23:49,388 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:23:49,388 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:23:49,388 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:23:49,438 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_6089.png'.
+
+2024-11-14 12:23:49,528 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/3100.png' successfully resized to 24x24 pixels.
+2024-11-14 12:23:49,528 - INFO - Selected 4x4 section at position (13, 8) in image with border.
+2024-11-14 12:23:49,528 - INFO - Selected horizontal row at position (8, 18) in image with border.
+2024-11-14 12:23:49,529 - INFO - Resized selection to (600, 600).
+2024-11-14 12:23:49,529 - INFO - Resized selection to (600, 150).
+2024-11-14 12:23:49,529 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:23:49,529 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:23:49,530 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:23:49,571 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_3100.png'.
+
+2024-11-14 12:23:50,066 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/635.png' successfully resized to 24x24 pixels.
+2024-11-14 12:23:50,066 - INFO - Selected 4x4 section at position (15, 15) in image with border.
+2024-11-14 12:23:50,066 - INFO - Selected horizontal row at position (2, 11) in image with border.
+2024-11-14 12:23:50,066 - INFO - Resized selection to (600, 600).
+2024-11-14 12:23:50,067 - INFO - Resized selection to (600, 150).
+2024-11-14 12:23:50,067 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:23:50,067 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:23:50,067 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:23:50,106 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_635.png'.
+
+2024-11-14 12:23:50,133 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/7804.png' successfully resized to 24x24 pixels.
+2024-11-14 12:23:50,133 - INFO - Selected 4x4 section at position (3, 18) in image with border.
+2024-11-14 12:23:50,133 - INFO - Selected horizontal row at position (7, 21) in image with border.
+2024-11-14 12:23:50,134 - INFO - Resized selection to (600, 600).
+2024-11-14 12:23:50,135 - INFO - Resized selection to (600, 150).
+2024-11-14 12:23:50,136 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:23:50,136 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:23:50,136 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:23:50,176 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_7804.png'.
+
+2024-11-14 12:23:50,316 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/5822.png' successfully resized to 24x24 pixels.
+2024-11-14 12:23:50,316 - INFO - Selected 4x4 section at position (6, 20) in image with border.
+2024-11-14 12:23:50,316 - INFO - Selected horizontal row at position (11, 15) in image with border.
+2024-11-14 12:23:50,316 - INFO - Resized selection to (600, 600).
+2024-11-14 12:23:50,316 - INFO - Resized selection to (600, 150).
+2024-11-14 12:23:50,317 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:23:50,317 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:23:50,317 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:23:50,356 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_5822.png'.
+
+2024-11-14 12:23:50,404 - INFO - Total Alien images processed: 9
+2024-11-14 12:27:26,524 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/5905.png' successfully resized to 24x24 pixels.
+2024-11-14 12:27:26,525 - INFO - Selected 4x4 section at position (5, 20) in image with border.
+2024-11-14 12:27:26,525 - INFO - Selected horizontal row at position (5, 18) in image with border.
+2024-11-14 12:27:26,525 - INFO - Resized selection to (600, 600).
+2024-11-14 12:27:26,525 - INFO - Resized selection to (600, 150).
+2024-11-14 12:27:26,526 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:27:26,526 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:27:26,526 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:27:26,566 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_5905.png'.
+
+2024-11-14 12:27:26,649 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/2890.png' successfully resized to 24x24 pixels.
+2024-11-14 12:27:26,649 - INFO - Selected 4x4 section at position (10, 11) in image with border.
+2024-11-14 12:27:26,649 - INFO - Selected horizontal row at position (15, 16) in image with border.
+2024-11-14 12:27:26,649 - INFO - Resized selection to (600, 600).
+2024-11-14 12:27:26,649 - INFO - Resized selection to (600, 150).
+2024-11-14 12:27:26,650 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:27:26,650 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:27:26,650 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:27:26,691 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_2890.png'.
+
+2024-11-14 12:27:26,754 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/7523.png' successfully resized to 24x24 pixels.
+2024-11-14 12:27:26,755 - INFO - Selected 4x4 section at position (6, 8) in image with border.
+2024-11-14 12:27:26,755 - INFO - Selected horizontal row at position (6, 6) in image with border.
+2024-11-14 12:27:26,755 - INFO - Resized selection to (600, 600).
+2024-11-14 12:27:26,755 - INFO - Resized selection to (600, 150).
+2024-11-14 12:27:26,756 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:27:26,756 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:27:26,756 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:27:26,794 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_7523.png'.
+
+2024-11-14 12:27:26,883 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/3443.png' successfully resized to 24x24 pixels.
+2024-11-14 12:27:26,883 - INFO - Selected 4x4 section at position (14, 7) in image with border.
+2024-11-14 12:27:26,883 - INFO - Selected horizontal row at position (2, 7) in image with border.
+2024-11-14 12:27:26,883 - INFO - Resized selection to (600, 600).
+2024-11-14 12:27:26,883 - INFO - Resized selection to (600, 150).
+2024-11-14 12:27:26,884 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:27:26,884 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:27:26,884 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:27:26,922 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_3443.png'.
+
+2024-11-14 12:27:27,116 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/6089.png' successfully resized to 24x24 pixels.
+2024-11-14 12:27:27,116 - INFO - Selected 4x4 section at position (7, 4) in image with border.
+2024-11-14 12:27:27,116 - INFO - Selected horizontal row at position (5, 18) in image with border.
+2024-11-14 12:27:27,117 - INFO - Resized selection to (600, 600).
+2024-11-14 12:27:27,117 - INFO - Resized selection to (600, 150).
+2024-11-14 12:27:27,117 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:27:27,117 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:27:27,117 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:27:27,155 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_6089.png'.
+
+2024-11-14 12:27:27,230 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/3100.png' successfully resized to 24x24 pixels.
+2024-11-14 12:27:27,231 - INFO - Selected 4x4 section at position (10, 16) in image with border.
+2024-11-14 12:27:27,232 - INFO - Selected horizontal row at position (13, 10) in image with border.
+2024-11-14 12:27:27,232 - INFO - Resized selection to (600, 600).
+2024-11-14 12:27:27,232 - INFO - Resized selection to (600, 150).
+2024-11-14 12:27:27,234 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:27:27,234 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:27:27,234 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:27:27,274 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_3100.png'.
+
+2024-11-14 12:27:27,738 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/635.png' successfully resized to 24x24 pixels.
+2024-11-14 12:27:27,738 - INFO - Selected 4x4 section at position (14, 7) in image with border.
+2024-11-14 12:27:27,738 - INFO - Selected horizontal row at position (4, 12) in image with border.
+2024-11-14 12:27:27,738 - INFO - Resized selection to (600, 600).
+2024-11-14 12:27:27,738 - INFO - Resized selection to (600, 150).
+2024-11-14 12:27:27,739 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:27:27,739 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:27:27,739 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:27:27,779 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_635.png'.
+
+2024-11-14 12:27:27,805 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/7804.png' successfully resized to 24x24 pixels.
+2024-11-14 12:27:27,805 - INFO - Selected 4x4 section at position (13, 10) in image with border.
+2024-11-14 12:27:27,806 - INFO - Selected horizontal row at position (4, 18) in image with border.
+2024-11-14 12:27:27,806 - INFO - Resized selection to (600, 600).
+2024-11-14 12:27:27,806 - INFO - Resized selection to (600, 150).
+2024-11-14 12:27:27,807 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:27:27,807 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:27:27,807 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:27:27,847 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_7804.png'.
+
+2024-11-14 12:27:27,980 - INFO - Image '/Users/danriding/Desktop/no-punks 0b0b0d with metadata 2/5822.png' successfully resized to 24x24 pixels.
+2024-11-14 12:27:27,980 - INFO - Selected 4x4 section at position (13, 2) in image with border.
+2024-11-14 12:27:27,980 - INFO - Selected horizontal row at position (3, 19) in image with border.
+2024-11-14 12:27:27,980 - INFO - Resized selection to (600, 600).
+2024-11-14 12:27:27,980 - INFO - Resized selection to (600, 150).
+2024-11-14 12:27:27,981 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:27:27,981 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:27:27,981 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:27:28,021 - INFO - Processed image saved to '/Users/danriding/Desktop/alien_5822.png'.
+
+2024-11-14 12:27:28,073 - INFO - Total Alien images processed: 9
+2024-11-14 12:36:19,886 - INFO - Selected 4x4 section at position (14, 14) in image with border.
+2024-11-14 12:36:19,887 - INFO - Selected horizontal row at position (15, 8) in image with border.
+2024-11-14 12:36:19,887 - INFO - Resized selection to (600, 600).
+2024-11-14 12:36:19,887 - INFO - Resized selection to (600, 150).
+2024-11-14 12:36:19,888 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:36:19,888 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:36:19,888 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:36:20,002 - INFO - Selected 4x4 section at position (10, 2) in image with border.
+2024-11-14 12:36:20,002 - INFO - Selected horizontal row at position (9, 11) in image with border.
+2024-11-14 12:36:20,002 - INFO - Resized selection to (600, 600).
+2024-11-14 12:36:20,002 - INFO - Resized selection to (600, 150).
+2024-11-14 12:36:20,003 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:36:20,003 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:36:20,003 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:36:20,097 - INFO - Selected 4x4 section at position (10, 12) in image with border.
+2024-11-14 12:36:20,097 - INFO - Selected horizontal row at position (14, 9) in image with border.
+2024-11-14 12:36:20,098 - INFO - Resized selection to (600, 600).
+2024-11-14 12:36:20,098 - INFO - Resized selection to (600, 150).
+2024-11-14 12:36:20,098 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:36:20,098 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:36:20,098 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:36:20,234 - INFO - Selected 4x4 section at position (6, 19) in image with border.
+2024-11-14 12:36:20,234 - INFO - Selected horizontal row at position (5, 10) in image with border.
+2024-11-14 12:36:20,234 - INFO - Resized selection to (600, 600).
+2024-11-14 12:36:20,234 - INFO - Resized selection to (600, 150).
+2024-11-14 12:36:20,235 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:36:20,235 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:36:20,235 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:36:20,470 - INFO - Selected 4x4 section at position (7, 2) in image with border.
+2024-11-14 12:36:20,470 - INFO - Selected horizontal row at position (2, 13) in image with border.
+2024-11-14 12:36:20,470 - INFO - Resized selection to (600, 600).
+2024-11-14 12:36:20,470 - INFO - Resized selection to (600, 150).
+2024-11-14 12:36:20,471 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:36:20,471 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:36:20,471 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:36:20,582 - INFO - Selected 4x4 section at position (9, 17) in image with border.
+2024-11-14 12:36:20,582 - INFO - Selected horizontal row at position (14, 19) in image with border.
+2024-11-14 12:36:20,583 - INFO - Resized selection to (600, 600).
+2024-11-14 12:36:20,583 - INFO - Resized selection to (600, 150).
+2024-11-14 12:36:20,583 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:36:20,583 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:36:20,584 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:36:21,095 - INFO - Selected 4x4 section at position (12, 4) in image with border.
+2024-11-14 12:36:21,095 - INFO - Selected horizontal row at position (5, 6) in image with border.
+2024-11-14 12:36:21,095 - INFO - Resized selection to (600, 600).
+2024-11-14 12:36:21,095 - INFO - Resized selection to (600, 150).
+2024-11-14 12:36:21,096 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:36:21,096 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:36:21,096 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:36:21,158 - INFO - Selected 4x4 section at position (15, 19) in image with border.
+2024-11-14 12:36:21,158 - INFO - Selected horizontal row at position (6, 23) in image with border.
+2024-11-14 12:36:21,159 - INFO - Resized selection to (600, 600).
+2024-11-14 12:36:21,159 - INFO - Resized selection to (600, 150).
+2024-11-14 12:36:21,159 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:36:21,159 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:36:21,160 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:36:21,357 - INFO - Selected 4x4 section at position (14, 9) in image with border.
+2024-11-14 12:36:21,357 - INFO - Selected horizontal row at position (14, 16) in image with border.
+2024-11-14 12:36:21,357 - INFO - Resized selection to (600, 600).
+2024-11-14 12:36:21,357 - INFO - Resized selection to (600, 150).
+2024-11-14 12:36:21,358 - INFO - Created dark canvas with size (1200, 1200) and color (11, 11, 11).
+2024-11-14 12:36:21,358 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:36:21,358 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:39:38,368 - INFO - Selected 4x4 section at position (7, 19) in image with border.
+2024-11-14 12:39:38,368 - INFO - Selected horizontal row at position (3, 20) in image with border.
+2024-11-14 12:39:38,368 - INFO - Resized selection to (600, 600).
+2024-11-14 12:39:38,369 - INFO - Resized selection to (600, 150).
+2024-11-14 12:39:38,369 - INFO - Created white canvas with size (1200, 1200) and color (255, 255, 255).
+2024-11-14 12:39:38,369 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:39:38,369 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:39:38,496 - INFO - Selected 4x4 section at position (15, 10) in image with border.
+2024-11-14 12:39:38,496 - INFO - Selected horizontal row at position (4, 14) in image with border.
+2024-11-14 12:39:38,496 - INFO - Resized selection to (600, 600).
+2024-11-14 12:39:38,496 - INFO - Resized selection to (600, 150).
+2024-11-14 12:39:38,497 - INFO - Created white canvas with size (1200, 1200) and color (255, 255, 255).
+2024-11-14 12:39:38,497 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:39:38,497 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:39:38,592 - INFO - Selected 4x4 section at position (9, 6) in image with border.
+2024-11-14 12:39:38,592 - INFO - Selected horizontal row at position (2, 11) in image with border.
+2024-11-14 12:39:38,592 - INFO - Resized selection to (600, 600).
+2024-11-14 12:39:38,592 - INFO - Resized selection to (600, 150).
+2024-11-14 12:39:38,593 - INFO - Created white canvas with size (1200, 1200) and color (255, 255, 255).
+2024-11-14 12:39:38,593 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:39:38,593 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:39:38,728 - INFO - Selected 4x4 section at position (11, 7) in image with border.
+2024-11-14 12:39:38,728 - INFO - Selected horizontal row at position (15, 15) in image with border.
+2024-11-14 12:39:38,728 - INFO - Resized selection to (600, 600).
+2024-11-14 12:39:38,728 - INFO - Resized selection to (600, 150).
+2024-11-14 12:39:38,729 - INFO - Created white canvas with size (1200, 1200) and color (255, 255, 255).
+2024-11-14 12:39:38,729 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:39:38,729 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:39:38,972 - INFO - Selected 4x4 section at position (11, 8) in image with border.
+2024-11-14 12:39:38,973 - INFO - Selected horizontal row at position (2, 11) in image with border.
+2024-11-14 12:39:38,973 - INFO - Resized selection to (600, 600).
+2024-11-14 12:39:38,973 - INFO - Resized selection to (600, 150).
+2024-11-14 12:39:38,973 - INFO - Created white canvas with size (1200, 1200) and color (255, 255, 255).
+2024-11-14 12:39:38,973 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:39:38,973 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:39:39,082 - INFO - Selected 4x4 section at position (10, 9) in image with border.
+2024-11-14 12:39:39,082 - INFO - Selected horizontal row at position (15, 17) in image with border.
+2024-11-14 12:39:39,082 - INFO - Resized selection to (600, 600).
+2024-11-14 12:39:39,082 - INFO - Resized selection to (600, 150).
+2024-11-14 12:39:39,083 - INFO - Created white canvas with size (1200, 1200) and color (255, 255, 255).
+2024-11-14 12:39:39,083 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:39:39,083 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:39:39,584 - INFO - Selected 4x4 section at position (10, 14) in image with border.
+2024-11-14 12:39:39,584 - INFO - Selected horizontal row at position (6, 18) in image with border.
+2024-11-14 12:39:39,584 - INFO - Resized selection to (600, 600).
+2024-11-14 12:39:39,584 - INFO - Resized selection to (600, 150).
+2024-11-14 12:39:39,585 - INFO - Created white canvas with size (1200, 1200) and color (255, 255, 255).
+2024-11-14 12:39:39,585 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:39:39,585 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:39:39,648 - INFO - Selected 4x4 section at position (4, 6) in image with border.
+2024-11-14 12:39:39,648 - INFO - Selected horizontal row at position (5, 9) in image with border.
+2024-11-14 12:39:39,648 - INFO - Resized selection to (600, 600).
+2024-11-14 12:39:39,648 - INFO - Resized selection to (600, 150).
+2024-11-14 12:39:39,649 - INFO - Created white canvas with size (1200, 1200) and color (255, 255, 255).
+2024-11-14 12:39:39,649 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:39:39,649 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:39:39,819 - INFO - Selected 4x4 section at position (6, 15) in image with border.
+2024-11-14 12:39:39,819 - INFO - Selected horizontal row at position (6, 20) in image with border.
+2024-11-14 12:39:39,820 - INFO - Resized selection to (600, 600).
+2024-11-14 12:39:39,820 - INFO - Resized selection to (600, 150).
+2024-11-14 12:39:39,820 - INFO - Created white canvas with size (1200, 1200) and color (255, 255, 255).
+2024-11-14 12:39:39,820 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:39:39,820 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:41:37,222 - INFO - Selected 4x4 section at position (4, 9) in image with border.
+2024-11-14 12:41:37,222 - INFO - Selected horizontal row at position (12, 12) in image with border.
+2024-11-14 12:41:37,222 - INFO - Resized selection to (600, 600).
+2024-11-14 12:41:37,223 - INFO - Resized selection to (600, 150).
+2024-11-14 12:41:37,223 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:41:37,223 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:41:37,223 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:41:37,348 - INFO - Selected 4x4 section at position (4, 6) in image with border.
+2024-11-14 12:41:37,348 - INFO - Selected horizontal row at position (9, 23) in image with border.
+2024-11-14 12:41:37,348 - INFO - Resized selection to (600, 600).
+2024-11-14 12:41:37,348 - INFO - Resized selection to (600, 150).
+2024-11-14 12:41:37,349 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:41:37,349 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:41:37,349 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:41:37,446 - INFO - Selected 4x4 section at position (1, 9) in image with border.
+2024-11-14 12:41:37,446 - INFO - Selected horizontal row at position (14, 9) in image with border.
+2024-11-14 12:41:37,446 - INFO - Resized selection to (600, 600).
+2024-11-14 12:41:37,446 - INFO - Resized selection to (600, 150).
+2024-11-14 12:41:37,447 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:41:37,447 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:41:37,448 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:41:37,593 - INFO - Selected 4x4 section at position (8, 2) in image with border.
+2024-11-14 12:41:37,593 - INFO - Selected horizontal row at position (4, 15) in image with border.
+2024-11-14 12:41:37,593 - INFO - Resized selection to (600, 600).
+2024-11-14 12:41:37,594 - INFO - Resized selection to (600, 150).
+2024-11-14 12:41:37,594 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:41:37,594 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:41:37,594 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:41:37,835 - INFO - Selected 4x4 section at position (15, 5) in image with border.
+2024-11-14 12:41:37,836 - INFO - Selected horizontal row at position (6, 12) in image with border.
+2024-11-14 12:41:37,836 - INFO - Resized selection to (600, 600).
+2024-11-14 12:41:37,836 - INFO - Resized selection to (600, 150).
+2024-11-14 12:41:37,837 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:41:37,837 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:41:37,837 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:41:37,960 - INFO - Selected 4x4 section at position (14, 12) in image with border.
+2024-11-14 12:41:37,960 - INFO - Selected horizontal row at position (3, 11) in image with border.
+2024-11-14 12:41:37,960 - INFO - Resized selection to (600, 600).
+2024-11-14 12:41:37,960 - INFO - Resized selection to (600, 150).
+2024-11-14 12:41:37,961 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:41:37,961 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:41:37,961 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:41:38,505 - INFO - Selected 4x4 section at position (7, 13) in image with border.
+2024-11-14 12:41:38,506 - INFO - Selected horizontal row at position (9, 22) in image with border.
+2024-11-14 12:41:38,506 - INFO - Resized selection to (600, 600).
+2024-11-14 12:41:38,506 - INFO - Resized selection to (600, 150).
+2024-11-14 12:41:38,508 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:41:38,508 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:41:38,508 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:41:38,570 - INFO - Selected 4x4 section at position (5, 17) in image with border.
+2024-11-14 12:41:38,570 - INFO - Selected horizontal row at position (20, 12) in image with border.
+2024-11-14 12:41:38,571 - INFO - Resized selection to (600, 600).
+2024-11-14 12:41:38,571 - INFO - Resized selection to (600, 150).
+2024-11-14 12:41:38,571 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:41:38,571 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:41:38,571 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:41:38,731 - INFO - Selected 4x4 section at position (12, 19) in image with border.
+2024-11-14 12:41:38,731 - INFO - Selected horizontal row at position (8, 22) in image with border.
+2024-11-14 12:41:38,731 - INFO - Resized selection to (600, 600).
+2024-11-14 12:41:38,732 - INFO - Resized selection to (600, 150).
+2024-11-14 12:41:38,732 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:41:38,732 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:41:38,733 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:43:28,365 - INFO - Selected 4x4 section at position (5, 8) in image with border.
+2024-11-14 12:43:28,366 - INFO - Selected horizontal row at position (15, 6) in image with border.
+2024-11-14 12:43:28,366 - INFO - Resized selection to (600, 600).
+2024-11-14 12:43:28,366 - INFO - Resized selection to (600, 150).
+2024-11-14 12:43:28,367 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:43:28,367 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:43:28,367 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:43:28,496 - INFO - Selected 4x4 section at position (4, 14) in image with border.
+2024-11-14 12:43:28,496 - INFO - Selected horizontal row at position (15, 10) in image with border.
+2024-11-14 12:43:28,497 - INFO - Resized selection to (600, 600).
+2024-11-14 12:43:28,497 - INFO - Resized selection to (600, 150).
+2024-11-14 12:43:28,497 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:43:28,497 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:43:28,497 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:43:28,600 - INFO - Selected 4x4 section at position (4, 17) in image with border.
+2024-11-14 12:43:28,603 - INFO - Selected horizontal row at position (6, 7) in image with border.
+2024-11-14 12:43:28,603 - INFO - Resized selection to (600, 600).
+2024-11-14 12:43:28,603 - INFO - Resized selection to (600, 150).
+2024-11-14 12:43:28,604 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:43:28,604 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:43:28,604 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:43:28,750 - INFO - Selected 4x4 section at position (15, 12) in image with border.
+2024-11-14 12:43:28,750 - INFO - Selected horizontal row at position (12, 11) in image with border.
+2024-11-14 12:43:28,751 - INFO - Resized selection to (600, 600).
+2024-11-14 12:43:28,751 - INFO - Resized selection to (600, 150).
+2024-11-14 12:43:28,751 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:43:28,751 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:43:28,752 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:43:29,052 - INFO - Selected 4x4 section at position (7, 3) in image with border.
+2024-11-14 12:43:29,052 - INFO - Selected horizontal row at position (15, 10) in image with border.
+2024-11-14 12:43:29,052 - INFO - Resized selection to (600, 600).
+2024-11-14 12:43:29,052 - INFO - Resized selection to (600, 150).
+2024-11-14 12:43:29,053 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:43:29,053 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:43:29,053 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:43:29,171 - INFO - Selected 4x4 section at position (12, 17) in image with border.
+2024-11-14 12:43:29,171 - INFO - Selected horizontal row at position (9, 21) in image with border.
+2024-11-14 12:43:29,171 - INFO - Resized selection to (600, 600).
+2024-11-14 12:43:29,171 - INFO - Resized selection to (600, 150).
+2024-11-14 12:43:29,171 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:43:29,171 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:43:29,172 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:43:29,761 - INFO - Selected 4x4 section at position (1, 6) in image with border.
+2024-11-14 12:43:29,761 - INFO - Selected horizontal row at position (13, 10) in image with border.
+2024-11-14 12:43:29,761 - INFO - Resized selection to (600, 600).
+2024-11-14 12:43:29,761 - INFO - Resized selection to (600, 150).
+2024-11-14 12:43:29,762 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:43:29,762 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:43:29,762 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:43:29,830 - INFO - Selected 4x4 section at position (16, 16) in image with border.
+2024-11-14 12:43:29,830 - INFO - Selected horizontal row at position (11, 15) in image with border.
+2024-11-14 12:43:29,830 - INFO - Resized selection to (600, 600).
+2024-11-14 12:43:29,830 - INFO - Resized selection to (600, 150).
+2024-11-14 12:43:29,831 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:43:29,831 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:43:29,831 - INFO - Placed image at position (300, 300) on canvas.
+2024-11-14 12:43:30,026 - INFO - Selected 4x4 section at position (1, 6) in image with border.
+2024-11-14 12:43:30,026 - INFO - Selected horizontal row at position (4, 23) in image with border.
+2024-11-14 12:43:30,026 - INFO - Resized selection to (600, 600).
+2024-11-14 12:43:30,026 - INFO - Resized selection to (600, 150).
+2024-11-14 12:43:30,027 - INFO - Created black canvas with size (1200, 1200) and color (0, 0, 0).
+2024-11-14 12:43:30,027 - INFO - Placed image at position (300, 1050) on canvas.
+2024-11-14 12:43:30,027 - INFO - Placed image at position (300, 300) on canvas.
