@@ -1,0 +1,271 @@
+const totalTokens = 10000;
+const imagesPath = "";  // e.g. "0.png"
+const jsonBaseURL = ""; // e.g. "0.json"
+
+let currentRows = 0;
+let currentCols = 0;
+let currentGridResolution = 2040;
+let gridTokenIds = [];
+let loadedImages = [];
+let jsonCache = {};
+
+const canvas = document.getElementById("gridCanvas");
+const ctx = canvas.getContext("2d");
+const loadingMessage = document.getElementById("loadingMessage");
+const rowsInput = document.getElementById("rows");
+const colsInput = document.getElementById("cols");
+const gridResInput = document.getElementById("gridResolution");
+const generateBtn = document.getElementById("generateGrid");
+const searchIndexInput = document.getElementById("searchIndex");
+const searchBtn = document.getElementById("searchBtn");
+const downloadResSelect = document.getElementById("downloadRes");
+const downloadBtn = document.getElementById("downloadImage");
+const tooltip = document.getElementById("tooltip");
+
+/***********************
+ * Utility: Typewriter
+ ***********************/
+function typeMessage(message, element, delayAfter, callback) {
+  element.textContent = "";
+  element.style.display = "block";
+  let i = 0;
+  const interval = setInterval(() => {
+    element.textContent += message.charAt(i);
+    i++;
+    if (i === message.length) {
+      clearInterval(interval);
+      setTimeout(() => {
+        if (callback) callback();
+      }, delayAfter);
+    }
+  }, 50);
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => resolve(img);
+    img.onerror = (err) => reject(err);
+    img.src = src;
+  });
+}
+
+function adjustResolution(r, c) {
+  return parseInt(gridResInput.value) || 2040;
+}
+
+/***********************
+ * GRID GENERATION
+ ***********************/
+async function generateGrid() {
+  const rows = parseInt(rowsInput.value);
+  const cols = parseInt(colsInput.value);
+  currentRows = rows;
+  currentCols = cols;
+  currentGridResolution = adjustResolution(rows, cols);
+  canvas.width = currentGridResolution;
+  canvas.height = currentGridResolution;
+
+  const cellWidth = currentGridResolution / cols;
+  const cellHeight = currentGridResolution / rows;
+  const totalCells = rows * cols;
+
+  const message = "Lights out traits stay. NoMeta grid loading...";
+  typeMessage(message, loadingMessage, 1000, async () => {
+    generateBtn.disabled = true;
+    downloadBtn.style.display = "none";
+
+    // Clear
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, currentGridResolution, currentGridResolution);
+
+    gridTokenIds = [];
+    for (let i = 0; i < totalCells; i++) {
+      gridTokenIds.push(getRandomInt(totalTokens));
+    }
+
+    const promises = gridTokenIds.map(tokenId =>
+      loadImage(`${imagesPath}${tokenId}.png`).catch(err => {
+        console.error("Error loading image for token", tokenId);
+        // return a dummy
+        const dummy = document.createElement("canvas");
+        dummy.width = 50;
+        dummy.height = 50;
+        const dctx = dummy.getContext("2d");
+        dctx.fillStyle = "#333";
+        dctx.fillRect(0, 0, dummy.width, dummy.height);
+        dctx.fillStyle = "#999";
+        dctx.fillText("X", 20, 30);
+        return dummy;
+      })
+    );
+
+    try {
+      loadedImages = await Promise.all(promises);
+      let idx = 0;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const img = loadedImages[idx++];
+          const scale = Math.min(cellWidth / img.width, cellHeight / img.height);
+          const newW = img.width * scale;
+          const newH = img.height * scale;
+          const offsetX = c * cellWidth + (cellWidth - newW) / 2;
+          const offsetY = r * cellHeight + (cellHeight - newH) / 2;
+          ctx.drawImage(img, offsetX, offsetY, newW, newH);
+        }
+      }
+      downloadBtn.style.display = "inline-block";
+    } catch (err) {
+      console.error("Error generating grid", err);
+    } finally {
+      loadingMessage.style.display = "none";
+      generateBtn.disabled = false;
+    }
+  });
+}
+
+/***********************
+ * SEARCH SINGLE TOKEN
+ ***********************/
+async function searchToken() {
+  const tokenId = parseInt(searchIndexInput.value);
+  if (isNaN(tokenId) || tokenId < 0 || tokenId >= totalTokens) {
+    alert("Enter a valid ID (0–9999)!");
+    return;
+  }
+  currentRows = 1;
+  currentCols = 1;
+  currentGridResolution = adjustResolution(1, 1);
+  canvas.width = currentGridResolution;
+  canvas.height = currentGridResolution;
+
+  const message = `Loading No-Punk #${tokenId}...`;
+  typeMessage(message, loadingMessage, 1000, async () => {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, currentGridResolution, currentGridResolution);
+    try {
+      const img = await loadImage(`${imagesPath}${tokenId}.png`);
+      const scale = Math.min(currentGridResolution / img.width, currentGridResolution / img.height);
+      const newW = img.width * scale;
+      const newH = img.height * scale;
+      const offsetX = (currentGridResolution - newW) / 2;
+      const offsetY = (currentGridResolution - newH) / 2;
+      ctx.drawImage(img, offsetX, offsetY, newW, newH);
+      gridTokenIds = [tokenId];
+      loadedImages = [img];
+    } catch (err) {
+      console.error("Error loading single No-Punk", err);
+    } finally {
+      loadingMessage.style.display = "none";
+    }
+  });
+}
+
+/***********************
+ * DOWNLOAD FUNCTIONALITY
+ ***********************/
+downloadBtn.addEventListener("click", () => {
+  const choice = downloadResSelect.value;
+  if (choice === "preview") {
+    const previewCanvas = document.createElement("canvas");
+    previewCanvas.width = 600;
+    previewCanvas.height = 600;
+    const pctx = previewCanvas.getContext("2d");
+    pctx.drawImage(canvas, 0, 0, canvas.width, canvas.height,
+                   0, 0, 600, 600);
+    triggerDownload(previewCanvas.toDataURL("image/png"), "nopunks_grid_preview.png");
+  } else if (choice === "hi") {
+    triggerDownload(canvas.toDataURL("image/png"), "nopunks_grid_hi.png");
+  } else if (choice === "ultra") {
+    const oc = document.createElement("canvas");
+    oc.width = canvas.width * 2;
+    oc.height = canvas.height * 2;
+    const octx = oc.getContext("2d");
+    octx.drawImage(canvas, 0, 0, canvas.width, canvas.height,
+                   0, 0, oc.width, oc.height);
+    triggerDownload(oc.toDataURL("image/png"), "nopunks_grid_ultra.png");
+  }
+});
+
+/***********************
+ * TOOLTIP ON HOVER
+ ***********************/
+let lastHoveredIndex = -1;
+canvas.addEventListener("mousemove", async (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const scaleFactor = canvas.width / canvas.clientWidth;
+  const mouseX = (e.clientX - rect.left) * scaleFactor;
+  const mouseY = (e.clientY - rect.top) * scaleFactor;
+  const cellWidth = canvas.width / currentCols;
+  const cellHeight = canvas.height / currentRows;
+  const col = Math.floor(mouseX / cellWidth);
+  const row = Math.floor(mouseY / cellHeight);
+  const index = row * currentCols + col;
+
+  if (index < 0 || index >= gridTokenIds.length) {
+    tooltip.style.display = "none";
+    lastHoveredIndex = -1;
+    return;
+  }
+  if (index === lastHoveredIndex) {
+    tooltip.style.left = e.pageX + 10 + "px";
+    tooltip.style.top = e.pageY + 10 + "px";
+    return;
+  }
+  lastHoveredIndex = index;
+  const tokenId = gridTokenIds[index];
+  if (tokenId === null || tokenId === undefined) {
+    tooltip.style.display = "none";
+    return;
+  }
+  // Check cache
+  if (jsonCache[tokenId]) {
+    displayTooltip(jsonCache[tokenId], e.pageX, e.pageY);
+  } else {
+    try {
+      const res = await fetch(`${jsonBaseURL}${tokenId}.json`);
+      if (!res.ok) throw new Error("HTTP error " + res.status);
+      const jsonData = await res.json();
+      jsonCache[tokenId] = jsonData;
+      displayTooltip(jsonData, e.pageX, e.pageY);
+    } catch (err) {
+      console.error("Error fetching JSON for token", tokenId, err);
+      tooltip.textContent = "Error loading traits.";
+      tooltip.style.display = "block";
+      tooltip.style.left = e.pageX + 10 + "px";
+      tooltip.style.top = e.pageY + 10 + "px";
+    }
+  }
+});
+
+canvas.addEventListener("mouseleave", () => {
+  tooltip.style.display = "none";
+  lastHoveredIndex = -1;
+});
+
+function displayTooltip(jsonData, x, y) {
+  let text = "";
+  if (jsonData.name) {
+    text += jsonData.name + "\n";
+  }
+  if (jsonData.attributes && Array.isArray(jsonData.attributes)) {
+    jsonData.attributes.forEach(attr => {
+      text += `${attr.trait_type}: ${attr.value}\n`;
+    });
+  }
+  tooltip.textContent = text.trim();
+  tooltip.style.left = x + 10 + "px";
+  tooltip.style.top = y + 10 + "px";
+  tooltip.style.display = "block";
+}
+
+/***********************
+ * EVENT LISTENERS
+ ***********************/
+generateBtn.addEventListener("click", generateGrid);
+searchBtn.addEventListener("click", searchToken);

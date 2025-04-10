@@ -1,57 +1,488 @@
-const fs = require('fs');
-const path = require('path');
-const Jimp = require('jimp');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>No-Punks Grid Generator</title>
+  <!-- Import pixel/retro font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* Basic reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-// Settings
-const inputDir = '/Users/danriding/Desktop/nopunks2'; // Directory containing your PNG No-Punks
-const outputFile = '/Users/danriding/Desktop/nopunks_grid_8x8.png'; // Final output file
+    body {
+      background-color: #000;
+      font-family: "Press Start 2P", monospace, Arial, sans-serif;
+      color: #00ccff; /* Keep the CryptoPunks blue for general text */
+      padding: 20px;
+    }
 
-const gridCols = 8;
-const gridRows = 8;
-const canvasSize = 2040; // Final canvas is 2040x2040
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
 
-const createNoPunkGrid = async () => {
-  // Get all PNG files from the input directory.
-  const allFiles = fs.readdirSync(inputDir).filter(f => f.toLowerCase().endsWith('.png'));
-  const totalImages = gridCols * gridRows; // 8x8 = 64
+    /* Header in white with a subtle text-shadow */
+    h1 {
+      margin: 20px 0;
+      font-size: 1.5rem;
+      color: #fff; /* White for the header text */
+      text-shadow: 0 0 2px #fff;
+    }
 
-  if (allFiles.length < totalImages) {
-    console.error(`Need at least ${totalImages} images, but only found ${allFiles.length}`);
-    return;
-  }
+    .controls {
+      background-color: #111;
+      padding: 20px;
+      border: 3px solid #fff;
+      box-shadow: 0 0 8px #fff;
+      margin: 0 auto 20px;
+      max-width: 600px;
+    }
 
-  // Shuffle the available file list and pick the first 64 images.
-  const selected = allFiles.sort(() => 0.5 - Math.random()).slice(0, totalImages);
+    .controls label,
+    .controls input,
+    .controls select {
+      font-size: 0.9rem;
+      margin: 5px;
+    }
 
-  // Calculate each cell's dimensions.
-  const cellWidth = Math.floor(canvasSize / gridCols);
-  const cellHeight = Math.floor(canvasSize / gridRows);
+    .controls input,
+    .controls select {
+      width: 120px;
+      text-align: center;
+      background-color: #000;
+      color: #00ccff;  /* CryptoPunks blue */
+      border: 2px solid #fff;
+      padding: 4px;
+    }
 
-  // Create a blank 2040x2040 canvas with a black background.
-  const grid = new Jimp(canvasSize, canvasSize, 0x000000FF);
+    /* Special width for grid resolution input */
+    #gridResolution {
+      width: 100px;
+    }
 
-  // Loop over each selected image and composite it into the correct cell.
-  for (let i = 0; i < selected.length; i++) {
-    const imgPath = path.join(inputDir, selected[i]);
-    const img = await Jimp.read(imgPath);
-    
-    // Create a temporary cell canvas to ensure proper centering without stretching.
-    const cell = new Jimp(cellWidth, cellHeight, 0x000000FF);
-    
-    // Use 'contain' so the image is scaled proportionally and centered.
-    img.contain(cellWidth, cellHeight, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
-    cell.composite(img, 0, 0);
-    
-    // Compute the top left coordinates for this cell in the final grid.
-    const x = (i % gridCols) * cellWidth;
-    const y = Math.floor(i / gridCols) * cellHeight;
-    
-    grid.composite(cell, x, y);
-  }
+    .controls button {
+      font-size: 0.9rem;
+      font-family: "Press Start 2P", monospace, Arial, sans-serif;
+      padding: 8px 12px;
+      margin: 10px 5px;
+      color: #00ccff;     /* CryptoPunks blue for button text */
+      background-color: #000;
+      border: 2px solid #fff;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
 
-  // Save the final grid image as a PNG.
-  await grid.writeAsync(outputFile);
-  console.log(`✅ Saved 8x8 No-Punks grid to: ${outputFile}`);
-};
+    .controls button:hover {
+      background-color: #fff;
+      color: #000;
+    }
 
-createNoPunkGrid().catch(err => console.error('Error:', err));
+    hr {
+      border: 1px dashed #444;
+      margin: 16px 0;
+    }
+
+    #loadingMessage {
+      font-size: 1rem;
+      color: #fff;
+      margin-top: 10px;
+      display: none;
+      font-family: "Press Start 2P", monospace;
+    }
+
+    .canvas-container {
+      overflow: auto;
+      margin-top: 20px;
+    }
+
+    /* The canvas is drawn at its internal resolution (set via gridResolution)
+       but displayed scaled (here fixed at 600px width) */
+    canvas {
+      border: 3px solid #fff;
+      box-shadow: 0 0 15px #fff, 0 0 5px #fff inset;
+      display: block;
+      margin: 20px auto;
+      width: 600px;
+      height: auto;
+    }
+
+    /* Tooltip style for displaying token traits on hover */
+    .tooltip {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 10px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 12px;
+      z-index: 100;
+      pointer-events: none;
+      display: none;
+      white-space: pre-wrap;
+      text-align: left;
+    }
+
+    @media (max-width: 500px) {
+      .controls {
+        max-width: 100%;
+        padding: 10px;
+      }
+      canvas {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>No-Punks Grid Generator</h1>
+    <div class="controls">
+      <!-- Grid Generation Controls -->
+      <div id="gridControls">
+        <label for="rows">Rows:</label>
+        <input type="number" id="rows" value="3" min="1" />
+        <label for="cols">Columns:</label>
+        <input type="number" id="cols" value="7" min="1" /><br />
+        <label for="gridResolution">Grid Resolution:</label>
+        <input type="number" id="gridResolution" value="2040" min="100" /><br />
+        <button id="generateGrid">Generate Grid</button>
+        <br /><br />
+        <label for="downloadRes">Download Resolution (Grid):</label>
+        <select id="downloadRes">
+          <option value="preview">Preview (600×600)</option>
+          <option value="hi">High (grid resolution)</option>
+          <option value="ultra">Ultra (2× grid resolution)</option>
+        </select>
+        <button id="downloadImage" style="display: none;">Download Grid</button>
+        <br /><br />
+      </div>
+
+      <!-- Search Single No-Punk Controls -->
+      <div id="searchControls">
+        <label for="searchIndex">Search NoPunk (0–9999):</label>
+        <input type="number" id="searchIndex" min="0" max="9999" />
+        <button id="searchBtn">Search NoPunk</button>
+      </div>
+      <!-- Loading Message -->
+      <div id="loadingMessage"></div>
+    </div>
+
+    <div class="canvas-container">
+      <!-- Main display canvas -->
+      <canvas id="gridCanvas" width="2040" height="2040"></canvas>
+    </div>
+
+    <!-- Tooltip for displaying token traits on hover -->
+    <div id="tooltip" class="tooltip"></div>
+  </div>
+
+  <script>
+    /*********************
+     * GLOBAL CONFIGURATION & STATE
+     *********************/
+    // Since images and JSON files (e.g. "0.png" to "9999.png" and "0.json" to "9999.json")
+    // are in the same folder as this HTML, both base paths can be empty strings.
+    const imagesPath = "";
+    const jsonBaseURL = "";
+    const totalTokens = 10000;  // Tokens from 0 to 9999
+
+    let gridTokenIds = [];  // Token IDs in the current grid
+    let loadedImages = [];  // Corresponding image objects
+    let currentRows = 0;
+    let currentCols = 0;
+    let currentGridResolution = 2040;
+
+    // Cache for JSON data.
+    const jsonCache = {};
+
+    /*********************
+     * DOM REFERENCES
+     *********************/
+    const canvas = document.getElementById("gridCanvas");
+    const ctx = canvas.getContext("2d");
+    const loadingMessage = document.getElementById("loadingMessage");
+    const downloadResSelect = document.getElementById("downloadRes");
+    const downloadBtn = document.getElementById("downloadImage");
+    const rowsInput = document.getElementById("rows");
+    const colsInput = document.getElementById("cols");
+    const gridResInput = document.getElementById("gridResolution");
+    const generateBtn = document.getElementById("generateGrid");
+    const searchIndexInput = document.getElementById("searchIndex");
+    const searchBtn = document.getElementById("searchBtn");
+    const tooltip = document.getElementById("tooltip");
+
+    /*********************
+     * UTILITY FUNCTIONS
+     *********************/
+    // Returns a random integer from 0..(max-1).
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+    // Loads an image from the specified src and returns a Promise.
+    function loadImage(src) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => resolve(img);
+        img.onerror = err => reject(err);
+        img.src = src;
+      });
+    }
+
+    // Returns the numeric grid resolution from the input, with a fallback.
+    function adjustResolution(rows, cols) {
+      return parseInt(gridResInput.value) || 2040;
+    }
+
+    // Helper to trigger a download from a data URL.
+    function triggerDownload(dataURL, filename) {
+      const link = document.createElement("a");
+      link.href = dataURL;
+      link.download = filename;
+      link.click();
+    }
+
+    // Typewriter effect for the loading message. Waits an extra delayAfter (ms) after finishing.
+    function typeMessage(message, element, delayAfter, callback) {
+      element.textContent = "";
+      element.style.display = "block";
+      let i = 0;
+      const interval = setInterval(() => {
+        element.textContent += message.charAt(i);
+        i++;
+        if (i === message.length) {
+          clearInterval(interval);
+          setTimeout(() => {
+            if (callback) callback();
+          }, delayAfter);
+        }
+      }, 50);
+    }
+
+    /*********************
+     * GRID GENERATION FUNCTION
+     *********************/
+    async function generateGrid() {
+      const rows = parseInt(rowsInput.value);
+      const cols = parseInt(colsInput.value);
+      currentRows = rows;
+      currentCols = cols;
+      currentGridResolution = adjustResolution(rows, cols);
+      canvas.width = currentGridResolution;
+      canvas.height = currentGridResolution;
+      const cellWidth = currentGridResolution / cols;
+      const cellHeight = currentGridResolution / rows;
+      const totalCells = rows * cols;
+
+      // Show the loading message via typewriter effect; pause for 1s after finishing.
+      const msg = "Lights out traits stay. NoMeta grid loading...";
+      typeMessage(msg, loadingMessage, 1000, async () => {
+        generateBtn.disabled = true;
+        downloadBtn.style.display = "none";
+
+        // Clear the canvas to black.
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, currentGridResolution, currentGridResolution);
+
+        // Pick random token IDs (0..9999) for each cell.
+        gridTokenIds = [];
+        for (let i = 0; i < totalCells; i++) {
+          gridTokenIds.push(getRandomInt(totalTokens));
+        }
+
+        // Load each image. If it fails, we replace with a dummy placeholder.
+        const promises = gridTokenIds.map(tokenId =>
+          loadImage(`${imagesPath}${tokenId}.png`).catch(err => {
+            console.error("Error loading image for token", tokenId, err);
+            const dummy = document.createElement("canvas");
+            dummy.width = 50;
+            dummy.height = 50;
+            const dctx = dummy.getContext("2d");
+            dctx.fillStyle = "#333";
+            dctx.fillRect(0, 0, dummy.width, dummy.height);
+            dctx.fillStyle = "#999";
+            dctx.font = "10px sans-serif";
+            dctx.fillText("X", 20, 30);
+            return dummy;
+          })
+        );
+
+        try {
+          loadedImages = await Promise.all(promises);
+
+          // Draw images into their respective cells.
+          let index = 0;
+          for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+              const img = loadedImages[index++];
+              const scale = Math.min(cellWidth / img.width, cellHeight / img.height);
+              const newWidth = img.width * scale;
+              const newHeight = img.height * scale;
+              const offsetX = c * cellWidth + (cellWidth - newWidth) / 2;
+              const offsetY = r * cellHeight + (cellHeight - newHeight) / 2;
+              ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
+            }
+          }
+          downloadBtn.style.display = "inline-block";
+        } catch (err) {
+          console.error("Error generating grid:", err);
+        } finally {
+          loadingMessage.style.display = "none";
+          generateBtn.disabled = false;
+        }
+      });
+    }
+
+    /*********************
+     * SEARCH FUNCTIONALITY: Single NoPunk
+     *********************/
+    async function searchToken() {
+      const tokenId = parseInt(searchIndexInput.value);
+      if (isNaN(tokenId) || tokenId < 0 || tokenId >= totalTokens) {
+        alert("Please enter a valid token number between 0 and " + (totalTokens - 1));
+        return;
+      }
+      currentRows = 1;
+      currentCols = 1;
+      currentGridResolution = adjustResolution(1, 1);
+      canvas.width = currentGridResolution;
+      canvas.height = currentGridResolution;
+      const msg = `Loading No-Punk #${tokenId}...`;
+      typeMessage(msg, loadingMessage, 1000, async () => {
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, currentGridResolution, currentGridResolution);
+        try {
+          const img = await loadImage(`${imagesPath}${tokenId}.png`);
+          const scale = Math.min(currentGridResolution / img.width, currentGridResolution / img.height);
+          const newWidth = img.width * scale;
+          const newHeight = img.height * scale;
+          const offsetX = (currentGridResolution - newWidth) / 2;
+          const offsetY = (currentGridResolution - newHeight) / 2;
+          ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
+          gridTokenIds = [tokenId];
+          loadedImages = [img];
+        } catch (err) {
+          console.error("Error loading token", tokenId, err);
+        } finally {
+          loadingMessage.style.display = "none";
+        }
+      });
+    }
+
+    /*********************
+     * DOWNLOAD GRID
+     *********************/
+    downloadBtn.addEventListener("click", () => {
+      const selectedRes = downloadResSelect.value;
+      if (selectedRes === "preview") {
+        const previewCanvas = document.createElement("canvas");
+        const previewSize = 600;
+        previewCanvas.width = previewSize;
+        previewCanvas.height = previewSize;
+        const pctx = previewCanvas.getContext("2d");
+        pctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, previewSize, previewSize);
+        triggerDownload(previewCanvas.toDataURL("image/png"), "nopunks_grid_preview.png");
+      } else if (selectedRes === "hi") {
+        triggerDownload(canvas.toDataURL("image/png"), "nopunks_grid_hi.png");
+      } else if (selectedRes === "ultra") {
+        const offCanvas = document.createElement("canvas");
+        offCanvas.width = canvas.width * 2;
+        offCanvas.height = canvas.height * 2;
+        const octx = offCanvas.getContext("2d");
+        octx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, offCanvas.width, offCanvas.height);
+        triggerDownload(offCanvas.toDataURL("image/png"), "nopunks_grid_ultra.png");
+      }
+    });
+
+    /*********************
+     * TOOLTIP: Display traits on hover
+     *********************/
+    let lastHoveredIndex = -1;
+    canvas.addEventListener("mousemove", async (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const scaleFactor = canvas.width / canvas.clientWidth;
+      const mouseX = (e.clientX - rect.left) * scaleFactor;
+      const mouseY = (e.clientY - rect.top) * scaleFactor;
+      const cellWidth = canvas.width / currentCols;
+      const cellHeight = canvas.height / currentRows;
+      const col = Math.floor(mouseX / cellWidth);
+      const row = Math.floor(mouseY / cellHeight);
+      const index = row * currentCols + col;
+
+      if (index < 0 || index >= gridTokenIds.length) {
+        tooltip.style.display = "none";
+        lastHoveredIndex = -1;
+        return;
+      }
+      if (index === lastHoveredIndex) {
+        tooltip.style.left = e.pageX + 10 + "px";
+        tooltip.style.top = e.pageY + 10 + "px";
+        return;
+      }
+      lastHoveredIndex = index;
+      const tokenId = gridTokenIds[index];
+      if (tokenId == null) {
+        tooltip.style.display = "none";
+        return;
+      }
+      // Check if cached
+      if (jsonCache[tokenId]) {
+        displayTooltip(jsonCache[tokenId], e.pageX, e.pageY);
+      } else {
+        // Otherwise fetch
+        try {
+          const response = await fetch(`${jsonBaseURL}${tokenId}.json`);
+          if (!response.ok) throw new Error("HTTP error " + response.status);
+          const jsonData = await response.json();
+          jsonCache[tokenId] = jsonData;
+          displayTooltip(jsonData, e.pageX, e.pageY);
+        } catch (err) {
+          console.error("Error fetching JSON for token", tokenId, err);
+          tooltip.textContent = "Error loading traits.";
+          tooltip.style.display = "block";
+          tooltip.style.left = e.pageX + 10 + "px";
+          tooltip.style.top = e.pageY + 10 + "px";
+        }
+      }
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+      tooltip.style.display = "none";
+      lastHoveredIndex = -1;
+    });
+
+    function displayTooltip(jsonData, x, y) {
+      let text = "";
+      if (jsonData.name) {
+        text += jsonData.name + "\n";
+      }
+      if (jsonData.attributes && Array.isArray(jsonData.attributes)) {
+        jsonData.attributes.forEach(attr => {
+          text += `${attr.trait_type}: ${attr.value}\n`;
+        });
+      }
+      tooltip.textContent = text.trim();
+      tooltip.style.left = x + 10 + "px";
+      tooltip.style.top = y + 10 + "px";
+      tooltip.style.display = "block";
+    }
+
+    /*********************
+     * EVENT LISTENERS
+     *********************/
+    generateBtn.addEventListener("click", generateGrid);
+    searchBtn.addEventListener("click", searchToken);
+  </script>
+</body>
+</html>
