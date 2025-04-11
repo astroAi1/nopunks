@@ -2,14 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>No-Punks Grid Generator</title>
     <!-- Import pixel/retro font -->
     <link
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
-
     <style>
       /* Basic reset */
       * {
@@ -17,224 +19,200 @@
         margin: 0;
         padding: 0;
       }
-
       body {
         background-color: #000;
         font-family: "Press Start 2P", monospace, Arial, sans-serif;
         color: #00ccff;
         padding: 20px;
       }
-
       .wrapper {
         max-width: 1200px;
         margin: 0 auto;
         text-align: center;
+        position: relative;
       }
-
       h1 {
         margin: 20px 0;
         font-size: 1.5rem;
         text-shadow: 0 0 2px #fff;
       }
-
       .controls {
-        display: inline-block;
         background-color: #111;
         padding: 20px;
         border: 3px solid #fff;
         box-shadow: 0 0 8px #fff;
-        margin-bottom: 20px;
-        width: 100%;
+        margin: 0 auto 20px;
         max-width: 600px;
       }
-
-      /* A small helper class to align items in a neat row */
-      .form-row {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 12px;
-      }
-
-      .controls label {
-        font-size: 0.9rem;
-      }
-
-      .controls input[type="number"],
+      .controls label,
+      .controls input,
       .controls select {
-        width: 60px;
         font-size: 0.9rem;
-        color: #00ccff;
+        margin: 5px;
+      }
+      .controls input,
+      .controls select {
+        width: 120px;
+        text-align: center;
         background-color: #000;
+        color: #00ccff;
         border: 2px solid #fff;
         padding: 4px;
-        text-align: center;
-        margin-left: 6px; /* small gap between label and input */
       }
-
-      /* Slightly larger width for the grid resolution input */
+      /* Special width for grid resolution input */
       #gridResolution {
-        width: 90px;
+        width: 100px;
       }
-
-      .controls select {
-        width: 180px;
-      }
-
       .controls button {
         font-size: 0.9rem;
         font-family: "Press Start 2P", monospace, Arial, sans-serif;
         padding: 8px 12px;
-        margin: 5px;
+        margin: 10px 5px;
         color: #00ccff;
         background-color: #000;
         border: 2px solid #fff;
         cursor: pointer;
         transition: background-color 0.2s, color 0.2s;
       }
-
       .controls button:hover {
         background-color: #fff;
         color: #000;
       }
-
+      hr {
+        border: 1px dashed #444;
+        margin: 16px 0;
+      }
       #loadingMessage {
         font-size: 1rem;
         color: #fff;
         margin-top: 10px;
-        text-shadow: none;
-        display: none; /* hidden by default */
+        display: none;
+        font-family: "Press Start 2P", monospace;
       }
-
       .canvas-container {
         overflow: auto;
         margin-top: 20px;
       }
-
+      /* The canvas is drawn at its internal resolution (set by gridResolution)
+         but displayed scaled. We set a max-width of 600px to keep it responsive. */
       canvas {
         border: 3px solid #fff;
         box-shadow: 0 0 15px #fff, 0 0 5px #fff inset;
         display: block;
-        margin: 0 auto;
-        width: 600px; /* scaled view, for display only */
+        margin: 20px auto;
+        width: 600px;
+        max-width: 100%;
         height: auto;
       }
-
-      /* Per-image download controls */
-      #individualDownload {
-        display: none;
-        margin-top: 20px;
+      /* Tooltip style for displaying token traits on hover */
+      .tooltip {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.85);
+        color: #fff;
+        border: 1px solid #fff;
         padding: 10px;
-        background-color: #111;
-        border: 3px solid #fff;
-        box-shadow: 0 0 8px #fff;
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
+        font-family: "Press Start 2P", monospace;
+        font-size: 12px;
+        z-index: 100;
+        pointer-events: none;
+        display: none;
+        white-space: pre-wrap;
+        text-align: left;
       }
-
-      #individualDownload label {
-        margin-right: 10px;
+      @media (max-width: 500px) {
+        .controls {
+          max-width: 100%;
+          padding: 10px;
+        }
+        canvas {
+          width: 100%;
+        }
       }
     </style>
   </head>
-
   <body>
     <div class="wrapper">
       <h1>No-Punks Grid Generator</h1>
-
       <div class="controls">
-        <!-- Rows/Columns/Resolution -->
-        <div class="form-row">
+        <!-- Grid Generation Controls -->
+        <div id="gridControls">
           <label for="rows">Rows:</label>
           <input type="number" id="rows" value="3" min="1" />
-
           <label for="cols">Columns:</label>
-          <input type="number" id="cols" value="7" min="1" />
-
-          <label for="gridResolution">Grid Res:</label>
-          <input type="number" id="gridResolution" value="2040" min="100" />
-        </div>
-
-        <!-- Generate Grid -->
-        <div class="form-row">
+          <input type="number" id="cols" value="7" min="1" /><br />
+          <label for="gridResolution">Grid Resolution:</label>
+          <input type="number" id="gridResolution" value="2040" min="100" /><br />
           <button id="generateGrid">Generate Grid</button>
-        </div>
-        <hr style="border: 1px dashed #444; margin: 16px 0;" />
-
-        <!-- Download Resolution & Button -->
-        <div class="form-row">
-          <label for="downloadRes">Download Res (Grid):</label>
+          <br /><br />
+          <label for="downloadRes">Download Resolution (Grid):</label>
           <select id="downloadRes">
             <option value="preview">Preview (600×600)</option>
             <option value="hi">High (grid resolution)</option>
             <option value="ultra">Ultra (2× grid resolution)</option>
           </select>
           <button id="downloadImage" style="display: none;">Download Grid</button>
+          <br /><br />
         </div>
-        <hr style="border: 1px dashed #444; margin: 16px 0;" />
-
-        <!-- Search NoPunk -->
-        <div class="form-row">
+        <!-- Search Single No-Punk Controls -->
+        <div id="searchControls">
           <label for="searchIndex">Search NoPunk (0–9999):</label>
           <input type="number" id="searchIndex" min="0" max="9999" />
           <button id="searchBtn">Search NoPunk</button>
         </div>
-
         <!-- Loading Message -->
-        <div id="loadingMessage">Lights out traits stay. Loading...</div>
+        <div id="loadingMessage"></div>
       </div>
-
-      <!-- Canvas Container -->
       <div class="canvas-container">
+        <!-- Main display canvas -->
         <canvas id="gridCanvas" width="2040" height="2040"></canvas>
       </div>
-
-      <!-- Per-image download controls -->
-      <div id="individualDownload">
-        <span>Download selected image at resolution:</span>
-        <select id="perImageRes">
-          <option value="normal">Normal (cell size)</option>
-          <option value="high">High (2× cell size)</option>
-          <option value="ultra">Ultra (4× cell size)</option>
-        </select>
-        <button id="downloadImageIndividual">Download This Image</button>
-      </div>
+      <!-- Tooltip for displaying token traits on hover -->
+      <div id="tooltip" class="tooltip"></div>
     </div>
 
     <script>
-      // Global DOM references and state
-      const canvas = document.getElementById("gridCanvas");
-      const ctx = canvas.getContext("2d");
-      const generateBtn = document.getElementById("generateGrid");
-      const downloadBtn = document.getElementById("downloadImage");
-      const downloadResSelect = document.getElementById("downloadRes");
-      const loadingMessage = document.getElementById("loadingMessage");
-      const searchInput = document.getElementById("searchIndex");
-      const searchBtn = document.getElementById("searchBtn");
-      const indivDownloadDiv = document.getElementById("individualDownload");
-      const perImageResSelect = document.getElementById("perImageRes");
-      const downloadImageIndividualBtn = document.getElementById("downloadImageIndividual");
+      /*********************
+       * GLOBAL CONFIGURATION & STATE
+       *********************/
+      // Since images and JSON files (named "0.png" ... "9999.png" and "0.json" ... "9999.json")
+      // are in the same folder as this HTML file, both base paths are empty strings.
+      const imagesPath = "";
+      const jsonBaseURL = "";
+      const totalTokens = 10000;  // Tokens 0 to 9999
 
-      // Source URL for images
-      const imagesPath = "https://node1.irys.xyz/InMDGHEx3L1YyRz6boihZGDHw4CKCRlLBlKnW6D83i4/";
-      const totalImages = 10000;
-
-      // Grid state variables
-      let chosenIndices = [];
-      let loadedImages = [];
+      let gridTokenIds = [];  // Array of token IDs in the current grid.
+      let loadedImages = [];  // Array of corresponding image objects.
       let currentRows = 0;
       let currentCols = 0;
       let currentGridResolution = 2040;
+      // Cache for JSON data.
+      const jsonCache = {};
 
-      // Utility: return a random integer < max
+      /*********************
+       * DOM REFERENCES
+       *********************/
+      const canvas = document.getElementById("gridCanvas");
+      const ctx = canvas.getContext("2d");
+      const loadingMessage = document.getElementById("loadingMessage");
+      const downloadResSelect = document.getElementById("downloadRes");
+      const downloadBtn = document.getElementById("downloadImage");
+      const rowsInput = document.getElementById("rows");
+      const colsInput = document.getElementById("cols");
+      const gridResInput = document.getElementById("gridResolution");
+      const generateBtn = document.getElementById("generateGrid");
+      const searchIndexInput = document.getElementById("searchIndex");
+      const searchBtn = document.getElementById("searchBtn");
+      const tooltip = document.getElementById("tooltip");
+
+      /*********************
+       * UTILITY FUNCTIONS
+       *********************/
+      // Returns a random integer from 0 to max-1.
       function getRandomInt(max) {
         return Math.floor(Math.random() * max);
       }
 
-      // Utility: load an image with crossOrigin handling
+      // Loads an image from a given URL and returns a promise.
       function loadImage(src) {
         return new Promise((resolve, reject) => {
           const img = new Image();
@@ -245,229 +223,12 @@
         });
       }
 
-      // Create a dummy canvas if an image fails to load
-      function createDummyCanvas() {
-        const dummy = document.createElement("canvas");
-        dummy.width = 50;
-        dummy.height = 50;
-        const dctx = dummy.getContext("2d");
-        dctx.fillStyle = "#333";
-        dctx.fillRect(0, 0, dummy.width, dummy.height);
-        dctx.fillStyle = "#999";
-        dctx.font = "10px sans-serif";
-        dctx.fillText("X", 20, 30);
-        return dummy;
-      }
-
-      // Adjust resolution for large grids or mobile
+      // Returns the grid resolution from the input.
       function adjustResolution(rows, cols) {
-        const deviceWidth = window.innerWidth || 600;
-        const isMobile = deviceWidth < 500;
-        if (rows * cols >= 100 || isMobile) {
-          return isMobile ? Math.min(currentGridResolution, 800) : Math.min(currentGridResolution, 1024);
-        }
-        return currentGridResolution;
+        return parseInt(gridResInput.value) || 2040;
       }
 
-      // Generate the random grid
-      async function generateGrid() {
-        currentGridResolution = parseInt(document.getElementById("gridResolution").value) || 2040;
-        const rows = parseInt(document.getElementById("rows").value);
-        const cols = parseInt(document.getElementById("cols").value);
-        currentRows = rows;
-        currentCols = cols;
-
-        const adjustedResolution = adjustResolution(rows, cols);
-        canvas.width = adjustedResolution;
-        canvas.height = adjustedResolution;
-        const cellWidth = adjustedResolution / cols;
-        const cellHeight = adjustedResolution / rows;
-        const totalCells = rows * cols;
-
-        // Show loading message
-        loadingMessage.textContent = "Lights out traits stay. Loading...";
-        loadingMessage.style.display = "block";
-        generateBtn.disabled = true;
-        downloadBtn.style.display = "none";
-        indivDownloadDiv.style.display = "none";
-
-        // Clear the canvas
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, adjustedResolution, adjustedResolution);
-
-        // Generate random indices
-        chosenIndices = [];
-        for (let i = 0; i < totalCells; i++) {
-          chosenIndices.push(getRandomInt(totalImages));
-        }
-
-        // Load images concurrently
-        const promises = chosenIndices.map(idx =>
-          loadImage(`${imagesPath}${idx}.png`).catch(err => {
-            console.error("Error loading image:", idx, err);
-            return createDummyCanvas();
-          })
-        );
-
-        try {
-          loadedImages = await Promise.all(promises);
-
-          // Draw each image in its cell
-          let i = 0;
-          for (let r = 0; r < rows; r++) {
-            for (let c = 0; c < cols; c++) {
-              const img = loadedImages[i++];
-              const scale = Math.min(cellWidth / img.width, cellHeight / img.height);
-              const newWidth = img.width * scale;
-              const newHeight = img.height * scale;
-              const offsetX = c * cellWidth + (cellWidth - newWidth) / 2;
-              const offsetY = r * cellHeight + (cellHeight - newHeight) / 2;
-              ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
-            }
-          }
-          downloadBtn.style.display = "inline-block";
-        } catch (err) {
-          console.error("Error during grid generation:", err);
-        } finally {
-          // Hide loading
-          loadingMessage.style.display = "none";
-          generateBtn.disabled = false;
-        }
-      }
-
-      // Search for a specific NoPunk
-      async function searchNoPunk() {
-        const index = parseInt(searchInput.value);
-        if (isNaN(index) || index < 0 || index >= totalImages) {
-          alert("Please enter a valid number between 0 and 9999.");
-          return;
-        }
-
-        loadingMessage.textContent = `Lights out traits stay. Loading NoPunk #${index}...`;
-        loadingMessage.style.display = "block";
-        searchBtn.disabled = true;
-        generateBtn.disabled = true;
-        downloadBtn.style.display = "none";
-        indivDownloadDiv.style.display = "none";
-
-        // Use the full resolution
-        canvas.width = currentGridResolution;
-        canvas.height = currentGridResolution;
-
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, currentGridResolution, currentGridResolution);
-
-        try {
-          const src = `${imagesPath}${index}.png`;
-          const img = await loadImage(src).catch(err => createDummyCanvas());
-          currentRows = 1;
-          currentCols = 1;
-          const scale = Math.min(currentGridResolution / img.width, currentGridResolution / img.height);
-          const newWidth = img.width * scale;
-          const newHeight = img.height * scale;
-          const offsetX = (currentGridResolution - newWidth) / 2;
-          const offsetY = (currentGridResolution - newHeight) / 2;
-          ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
-          loadedImages = [img];
-          chosenIndices = [index];
-        } catch (err) {
-          console.error("Error loading NoPunk:", err);
-        } finally {
-          loadingMessage.style.display = "none";
-          searchBtn.disabled = false;
-          generateBtn.disabled = false;
-        }
-      }
-
-      // Download the entire grid
-      downloadBtn.addEventListener("click", () => {
-        const selectedRes = downloadResSelect.value;
-        if (selectedRes === "preview") {
-          const previewCanvas = document.createElement("canvas");
-          const previewSize = 600;
-          previewCanvas.width = previewSize;
-          previewCanvas.height = previewSize;
-          const previewCtx = previewCanvas.getContext("2d");
-          previewCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, previewSize, previewSize);
-          triggerDownload(previewCanvas.toDataURL("image/png"), "nopunks_grid_preview.png");
-        } else if (selectedRes === "hi") {
-          triggerDownload(canvas.toDataURL("image/png"), "nopunks_grid_hi.png");
-        } else if (selectedRes === "ultra") {
-          // 2× scale
-          const offscreenCanvas = document.createElement("canvas");
-          offscreenCanvas.width = canvas.width * 2;
-          offscreenCanvas.height = canvas.height * 2;
-          const offscreenCtx = offscreenCanvas.getContext("2d");
-
-          const rows = currentRows;
-          const cols = currentCols;
-          const cellWidth = offscreenCanvas.width / cols;
-          const cellHeight = offscreenCanvas.height / rows;
-
-          offscreenCtx.fillStyle = "black";
-          offscreenCtx.fillRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
-
-          let i = 0;
-          for (let r = 0; r < rows; r++) {
-            for (let c = 0; c < cols; c++) {
-              const img = loadedImages[i++];
-              const scale = Math.min(cellWidth / img.width, cellHeight / img.height);
-              const newWidth = img.width * scale;
-              const newHeight = img.height * scale;
-              const offsetX = c * cellWidth + (cellWidth - newWidth) / 2;
-              const offsetY = r * cellHeight + (cellHeight - newHeight) / 2;
-              offscreenCtx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
-            }
-          }
-          triggerDownload(offscreenCanvas.toDataURL("image/png"), "nopunks_grid_ultra.png");
-        }
-      });
-
-      // Handle per-image (cell) download
-      let selectedImageIndex = null;
-      canvas.addEventListener("click", (event) => {
-        if (currentRows <= 0 || currentCols <= 0 || loadedImages.length === 0) return;
-
-        const rect = canvas.getBoundingClientRect();
-        const clickX = event.clientX - rect.left;
-        const clickY = event.clientY - rect.top;
-        const displayWidth = canvas.clientWidth;
-        const scaleFactor = displayWidth / canvas.width;
-        const cellDisplayWidth = (canvas.width / currentCols) * scaleFactor;
-        const cellDisplayHeight = (canvas.height / currentRows) * scaleFactor;
-        const col = Math.floor(clickX / cellDisplayWidth);
-        const row = Math.floor(clickY / cellDisplayHeight);
-        const cellIndex = row * currentCols + col;
-        if (cellIndex >= loadedImages.length) return;
-
-        selectedImageIndex = cellIndex;
-        indivDownloadDiv.style.display = "block";
-      });
-
-      // Download the selected cell
-      downloadImageIndividualBtn.addEventListener("click", () => {
-        if (selectedImageIndex === null || !loadedImages[selectedImageIndex]) return;
-
-        const img = loadedImages[selectedImageIndex];
-        let multiplier = 1;
-        const choice = perImageResSelect.value;
-
-        if (choice === "high") multiplier = 2;
-        else if (choice === "ultra") multiplier = 4;
-
-        const offCanvas = document.createElement("canvas");
-        offCanvas.width = img.width * multiplier;
-        offCanvas.height = img.height * multiplier;
-        const offCtx = offCanvas.getContext("2d");
-        offCtx.drawImage(img, 0, 0, offCanvas.width, offCanvas.height);
-
-        triggerDownload(
-          offCanvas.toDataURL("image/png"),
-          `nopunk_${chosenIndices[selectedImageIndex] || "custom"}_${choice}.png`
-        );
-      });
-
-      // Helper to trigger a download
+      // Creates and triggers a download.
       function triggerDownload(dataURL, filename) {
         const link = document.createElement("a");
         link.href = dataURL;
@@ -475,9 +236,254 @@
         link.click();
       }
 
-      // Attach event listeners
+      // Typewriter effect for the loading message.
+      // Once finished, it waits for an additional delay (in ms) before calling the callback.
+      function typeMessage(message, element, delayAfter, callback) {
+        element.textContent = "";
+        element.style.display = "block";
+        let i = 0;
+        const interval = setInterval(() => {
+          element.textContent += message.charAt(i);
+          i++;
+          if (i === message.length) {
+            clearInterval(interval);
+            setTimeout(() => {
+              if (callback) callback();
+            }, delayAfter);
+          }
+        }, 50); // 50ms per character (adjust as needed)
+      }
+
+      /*********************
+       * GRID GENERATION FUNCTIONALITY
+       *********************/
+      async function generateGrid() {
+        const rows = parseInt(rowsInput.value);
+        const cols = parseInt(colsInput.value);
+        currentRows = rows;
+        currentCols = cols;
+        currentGridResolution = adjustResolution(rows, cols);
+        canvas.width = currentGridResolution;
+        canvas.height = currentGridResolution;
+        const cellWidth = currentGridResolution / cols;
+        const cellHeight = currentGridResolution / rows;
+        const totalCells = rows * cols;
+
+        // Use a typewriter effect with an extra 1-second pause.
+        const msg = "Lights out traits stay. NoMeta grid loading...";
+        typeMessage(msg, loadingMessage, 1000, async () => {
+          generateBtn.disabled = true;
+          downloadBtn.style.display = "none";
+
+          // Clear canvas.
+          ctx.fillStyle = "black";
+          ctx.fillRect(0, 0, currentGridResolution, currentGridResolution);
+
+          // Randomly select token IDs (from 0 to totalTokens-1).
+          gridTokenIds = [];
+          for (let i = 0; i < totalCells; i++) {
+            gridTokenIds.push(getRandomInt(totalTokens));
+          }
+
+          // Load images for each selected token.
+          const promises = gridTokenIds.map(tokenId =>
+            loadImage(`${imagesPath}${tokenId}.png`).catch(err => {
+              console.error("Error loading image for token", tokenId, err);
+              // Create a dummy image on error.
+              const dummy = document.createElement("canvas");
+              dummy.width = 50;
+              dummy.height = 50;
+              const dctx = dummy.getContext("2d");
+              dctx.fillStyle = "#333";
+              dctx.fillRect(0, 0, dummy.width, dummy.height);
+              dctx.fillStyle = "#999";
+              dctx.font = "10px sans-serif";
+              dctx.fillText("X", 20, 30);
+              return dummy;
+            })
+          );
+          try {
+            loadedImages = await Promise.all(promises);
+            // Draw the grid.
+            let index = 0;
+            for (let r = 0; r < rows; r++) {
+              for (let c = 0; c < cols; c++) {
+                const img = loadedImages[index++];
+                const scale = Math.min(cellWidth / img.width, cellHeight / img.height);
+                const newWidth = img.width * scale;
+                const newHeight = img.height * scale;
+                const offsetX = c * cellWidth + (cellWidth - newWidth) / 2;
+                const offsetY = r * cellHeight + (cellHeight - newHeight) / 2;
+                ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
+              }
+            }
+            downloadBtn.style.display = "inline-block";
+          } catch (err) {
+            console.error("Error during grid generation:", err);
+          } finally {
+            loadingMessage.style.display = "none";
+            generateBtn.disabled = false;
+          }
+        });
+      }
+
+      /*********************
+       * SEARCH FUNCTIONALITY (Load single No-Punk by token number)
+       *********************/
+      async function searchToken() {
+        const tokenId = parseInt(searchIndexInput.value);
+        if (isNaN(tokenId) || tokenId < 0 || tokenId >= totalTokens) {
+          alert("Please enter a valid token number between 0 and " + (totalTokens - 1));
+          return;
+        }
+        currentRows = 1;
+        currentCols = 1;
+        currentGridResolution = adjustResolution(1, 1);
+        canvas.width = currentGridResolution;
+        canvas.height = currentGridResolution;
+        const msg = `Loading No-Punk #${tokenId}...`;
+        typeMessage(msg, loadingMessage, 1000, async () => {
+          ctx.fillStyle = "black";
+          ctx.fillRect(0, 0, currentGridResolution, currentGridResolution);
+          try {
+            const img = await loadImage(`${imagesPath}${tokenId}.png`);
+            const scale = Math.min(currentGridResolution / img.width, currentGridResolution / img.height);
+            const newWidth = img.width * scale;
+            const newHeight = img.height * scale;
+            const offsetX = (currentGridResolution - newWidth) / 2;
+            const offsetY = (currentGridResolution - newHeight) / 2;
+            ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
+            gridTokenIds = [tokenId];
+            loadedImages = [img];
+          } catch (err) {
+            console.error("Error loading token", tokenId, err);
+          } finally {
+            loadingMessage.style.display = "none";
+          }
+        });
+      }
+
+      /*********************
+       * DOWNLOAD GRID FUNCTIONALITY
+       *********************/
+      downloadBtn.addEventListener("click", () => {
+        const selectedRes = downloadResSelect.value;
+        if (selectedRes === "preview") {
+          const previewCanvas = document.createElement("canvas");
+          const previewSize = 600;
+          previewCanvas.width = previewSize;
+          previewCanvas.height = previewSize;
+          const pctx = previewCanvas.getContext("2d");
+          pctx.drawImage(
+            canvas,
+            0,
+            0,
+            canvas.width,
+            canvas.height,
+            0,
+            0,
+            previewSize,
+            previewSize
+          );
+          triggerDownload(previewCanvas.toDataURL("image/png"), "nopunks_grid_preview.png");
+        } else if (selectedRes === "hi") {
+          triggerDownload(canvas.toDataURL("image/png"), "nopunks_grid_hi.png");
+        } else if (selectedRes === "ultra") {
+          const offCanvas = document.createElement("canvas");
+          offCanvas.width = canvas.width * 2;
+          offCanvas.height = canvas.height * 2;
+          const octx = offCanvas.getContext("2d");
+          octx.drawImage(
+            canvas,
+            0,
+            0,
+            canvas.width,
+            canvas.height,
+            0,
+            0,
+            offCanvas.width,
+            offCanvas.height
+          );
+          triggerDownload(offCanvas.toDataURL("image/png"), "nopunks_grid_ultra.png");
+        }
+      });
+
+      /*********************
+       * TOOLTIP FOR DISPLAYING TOKEN TRAITS ON HOVER
+       *********************/
+      let lastHoveredIndex = -1;
+      canvas.addEventListener("mousemove", async (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const scaleFactor = canvas.width / canvas.clientWidth;
+        const mouseX = (e.clientX - rect.left) * scaleFactor;
+        const mouseY = (e.clientY - rect.top) * scaleFactor;
+        const cellWidth = canvas.width / currentCols;
+        const cellHeight = canvas.height / currentRows;
+        const col = Math.floor(mouseX / cellWidth);
+        const row = Math.floor(mouseY / cellHeight);
+        const index = row * currentCols + col;
+
+        if (index < 0 || index >= gridTokenIds.length) {
+          tooltip.style.display = "none";
+          lastHoveredIndex = -1;
+          return;
+        }
+        if (index === lastHoveredIndex) {
+          tooltip.style.left = e.pageX + 10 + "px";
+          tooltip.style.top = e.pageY + 10 + "px";
+          return;
+        }
+        lastHoveredIndex = index;
+        const tokenId = gridTokenIds[index];
+        if (tokenId == null) {
+          tooltip.style.display = "none";
+          return;
+        }
+        if (jsonCache[tokenId]) {
+          displayTooltip(jsonCache[tokenId], e.pageX, e.pageY);
+        } else {
+          try {
+            const response = await fetch(`${jsonBaseURL}${tokenId}.json`);
+            if (!response.ok) throw new Error("HTTP error " + response.status);
+            const jsonData = await response.json();
+            jsonCache[tokenId] = jsonData;
+            displayTooltip(jsonData, e.pageX, e.pageY);
+          } catch (err) {
+            console.error("Error fetching JSON for token", tokenId, err);
+            tooltip.textContent = "Error loading traits.";
+            tooltip.style.display = "block";
+            tooltip.style.left = e.pageX + 10 + "px";
+            tooltip.style.top = e.pageY + 10 + "px";
+          }
+        }
+      });
+
+      canvas.addEventListener("mouseleave", () => {
+        tooltip.style.display = "none";
+        lastHoveredIndex = -1;
+      });
+
+      function displayTooltip(jsonData, x, y) {
+        let text = "";
+        if (jsonData.name) {
+          text += jsonData.name + "\n";
+        }
+        if (jsonData.attributes && Array.isArray(jsonData.attributes)) {
+          jsonData.attributes.forEach(attr => {
+            text += `${attr.trait_type}: ${attr.value}\n`;
+          });
+        }
+        tooltip.textContent = text.trim();
+        tooltip.style.left = x + 10 + "px";
+        tooltip.style.top = y + 10 + "px";
+        tooltip.style.display = "block";
+      }
+
+      /*********************
+       * EVENT LISTENERS
+       *********************/
       generateBtn.addEventListener("click", generateGrid);
-      searchBtn.addEventListener("click", searchNoPunk);
+      searchBtn.addEventListener("click", searchToken);
     </script>
   </body>
 </html>

@@ -1,1 +1,159 @@
 
+/* Basic reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    background-color: #000;
+    color: #fff;
+    font-family: "Press Start 2P", monospace, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    /* Some people prefer a smaller default font, or you can scale with 62.5% or so */
+  }
+  
+  .main-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .top-section {
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 1px solid #333;
+  }
+  
+  .logo-and-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  .project-logo {
+    width: 50px;
+    height: 50px;
+    background: url('yourLogo.png') no-repeat center center;
+    background-size: contain;
+  }
+  
+  .subtitle {
+    color: #888;
+    margin-top: 8px;
+  }
+  
+  .content-area {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+  }
+  
+  .overview-panel, .generator-panel, .search-panel, .download-panel {
+    background-color: #111;
+    border: 1px solid #222;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 6px #222;
+  }
+  
+  .panel-header h3 {
+    margin-bottom: 10px;
+    color: #ccc;
+  }
+  
+  .description {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  
+  .grid-controls, .search-controls, .download-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .grid-controls label,
+  .search-controls label,
+  .download-controls label {
+    color: #999;
+  }
+  
+  .grid-controls input,
+  .search-controls input,
+  .download-controls select {
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #444;
+    padding: 6px;
+    font-family: "Press Start 2P", monospace;
+    font-size: 12px;
+  }
+  
+  .grid-controls button,
+  .search-controls button,
+  .download-controls button {
+    padding: 8px 16px;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #555;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  
+  .grid-controls button:hover,
+  .search-controls button:hover,
+  .download-controls button:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .canvas-section {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  #gridCanvas {
+    border: 3px solid #444;
+    box-shadow: 0 0 10px #333;
+    width: 600px; /* or 100% if you want it responsive */
+    margin: 0 auto;
+    display: block;
+  }
+  
+  /* Tooltip style */
+  .tooltip {
+    position: absolute;
+    background: rgba(0,0,0,0.9);
+    color: #fff;
+    border: 1px solid #666;
+    padding: 8px;
+    font-size: 12px;
+    pointer-events: none;
+    white-space: pre-wrap;
+    text-align: left;
+    max-width: 200px;
+    z-index: 999;
+    border-radius: 3px;
+  }
+  
+  .loading-message {
+    text-align: center;
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    font-family: "Press Start 2P", monospace;
+  }
+  
+  .page-footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #333;
+    color: #666;
+  }
